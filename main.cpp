@@ -19,8 +19,7 @@ int main()
   {
     loopCount++;
     reg = dev.readData();    
-    std::cout << std::hex << "RegNr.: 0x" << reg.number << "\n";  
-
+    //std::cout << std::hex << "RegNr.: 0x" << reg.number << "\n";  
   }
   auto val = dev.readData(ADS1115RegisterId::conversion);
 
