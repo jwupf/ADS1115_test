@@ -1,5 +1,5 @@
-add_executable(hello_test hello_test.cpp)
+add_executable(ADS1115ReaderTests ADS1115ReaderTests.cpp)
 
-target_link_libraries(hello_test gtest_main)
+target_link_libraries(ADS1115ReaderTests gtest_main)
 
-gtest_discover_tests(hello_test)
+gtest_discover_tests(ADS1115ReaderTests)
