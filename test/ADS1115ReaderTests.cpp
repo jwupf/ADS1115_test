@@ -1,12 +1,29 @@
 #include <gtest/gtest.h>
 
-// Demonstrate some basic assertions.
-TEST(HelloTest, BasicAssertion1) {
-  // Expect two strings not to be equal.
-  EXPECT_STRNE("hello", "world");
-}
+#include "MQSensor.h"
+#include "IAnalogDigitalConverter.h"
 
-TEST(HelloTest, BasicAssertion2) {
-  // Expect equality.
-  EXPECT_EQ(7 * 6, 42);
+class FakeADConverter : public IAnalogDigitalConverter {
+  uint16_t val_;
+  public:
+  FakeADConverter(uint16_t val) : val_(val){
+
+  }
+
+  uint16_t read(){
+    return this->val_;
+  }
+};
+
+TEST(MQXXXTest, GetValue) {
+  // arrange
+  uint16_t expectedValue = 0x1578u;
+  FakeADConverter adc(expectedValue);
+  MQSensor sensor((IAnalogDigitalConverter*)&adc);
+
+  // act
+  uint16_t sensorValue = sensor.read();
+
+  // assert
+  ASSERT_EQ(sensorValue, expectedValue);
 }
